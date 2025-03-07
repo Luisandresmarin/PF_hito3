@@ -1,3 +1,17 @@
+### **.env backend**
+- **DB_USER=postgres
+- **DB_HOST=localhost
+- **DB_NAME=marketplace_seguridad
+- **DB_PASSWORD=password
+- **DB_PORT=5432
+- **JWT_SECRET=tu_clave_secreta
+
+### **.env frontend**
+- **VITE_API_URL=http://localhost:5000/api
+
+
+
+
 ## 📌 API Endpoints  
 
 ### **🔐 Autenticación (`/api/auth`)**  
