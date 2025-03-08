@@ -6,7 +6,7 @@ import '../assets/styles.css';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = import.meta.env.VITE_API_URL; 
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +14,7 @@ const Register = () => {
     apellido: '',
     email: '',
     password: '',
+    confirmPassword: '',
     celular: '',
     direccion: '',
     ciudad: '',
@@ -22,19 +23,30 @@ const Register = () => {
   });
 
   const [mensaje, setMensaje] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(true); // Estado para validar las contraseñas
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    // Validación instantánea de las contraseñas
+    if (name === 'confirmPassword') {
+      setPasswordMatch(formData.password === value);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      setMensaje('Las contraseñas no coinciden');
+      return;
+    }
 
     try {
       const response = await axios.post(`${API_URL}/auth/register`, formData);
       setMensaje(response.data.mensaje);
-      setFormData({ nombre: '', apellido: '', email: '', password: '', celular: '', direccion: '', ciudad: '', region: '', rut: '' });
+      setFormData({ nombre: '', apellido: '', email: '', password: '', confirmPassword: '', celular: '', direccion: '', ciudad: '', region: '', rut: '' });
       navigate('/login');
     } catch (error) {
       setMensaje(error.response?.data?.mensaje || 'Error en el registro');
@@ -47,7 +59,7 @@ const Register = () => {
       <Container className="mt-5 d-flex justify-content-center">
         <Card style={{ width: '48rem', margin: '50px' }} className="shadow-lg">
           <Card.Body>
-            <Card.Title className="text-center" style={{ color: '#4C5425', fontSize: '2.5rem' }}>Register</Card.Title>
+            <Card.Title className="text-center" style={{ color: '#4C5425', fontSize: '2.5rem' }}>Registro</Card.Title>
             {mensaje && <p className="text-center text-danger">{mensaje}</p>}
             <Form onSubmit={handleSubmit}>
               <Row className="mt-3">
@@ -79,7 +91,21 @@ const Register = () => {
                   </Form.Group>
                 </Col>
               </Row>
-
+              <Row className="mt-3">
+                <Col md={6}>
+                  <Form.Group controlId="formGridConfirmPassword">
+                    <Form.Label>Confirmar Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      required
+                    />
+                    {!passwordMatch && <p className="text-danger">Las contraseñas no coinciden</p>}
+                  </Form.Group>
+                </Col>
+              </Row>
               <Row className="mt-3">
                 <Col md={6}>
                   <Form.Group controlId="formGridPhone">
@@ -103,7 +129,7 @@ const Register = () => {
               <Row className="mt-3">
                 <Col md={6}>
                   <Form.Group controlId="formGridCity">
-                    <Form.Label>Ciudad</Form.Label>
+                    <Form.Label>Comuna</Form.Label>
                     <Form.Control name="ciudad" value={formData.ciudad} onChange={handleChange} required />
                   </Form.Group>
                 </Col>
@@ -116,7 +142,7 @@ const Register = () => {
               </Row>
 
               <div className="d-flex justify-content-center mt-4">
-                <Button variant="custom" type="submit">Register</Button>
+                <Button variant="custom" type="submit" disabled={!passwordMatch}>Registrar</Button>
               </div>
             </Form>
           </Card.Body>
@@ -128,3 +154,4 @@ const Register = () => {
 };
 
 export default Register;
+
