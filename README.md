@@ -1,4 +1,5 @@
-## 📌 API Endpoints: (en el backend puedes hacer correr el index que esta en public, esto te muestra un poco la compocicion del backend)
+## 📌 API Endpoints: 
+- (en el backend puedes hacer correr el index que esta en public, esto te muestra un poco la composicion del backend)
 
 - Despues de descargar el programa, clonar o forkear este repositorio debes saber que tienes que: 
 
