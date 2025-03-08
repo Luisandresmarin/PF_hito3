@@ -1,18 +1,32 @@
+## 📌 API Endpoints:
+
+- Despues de descargar el programa, clonar o forkear este repositorio debes saber que tienes que: 
+
+### Instalar dependencias con:
+npm install
+
+### Consigurar sus variables de entorno para que corra el programa, lo minimo necesario intalado sera así:
+
 ### **.env backend**
-- **DB_USER=postgres
-- **DB_HOST=localhost
-- **DB_NAME=marketplace_seguridad
-- **DB_PASSWORD=password
-- **DB_PORT=5432
-- **JWT_SECRET=tu_clave_secreta
+- DB_USER= ***
+- DB_HOST= ***
+- DB_NAME= ***
+- DB_PASSWORD= ***
+- DB_PORT= 5432
+- JWT_SECRET= ***
+
+
+### Luego de ello para poder ejecurtar el back puede hacerlo con :
+- npm run dev
+- npm start
+
+
+### Dejo los datos para el front
 
 ### **.env frontend**
-- **VITE_API_URL=http://localhost:5000/api
+- VITE_API_URL=http://localhost:5000/api
 
 
-
-
-## 📌 API Endpoints  
 
 ### **🔐 Autenticación (`/api/auth`)**  
 - **POST `/register`** → Registra un nuevo usuario.  
