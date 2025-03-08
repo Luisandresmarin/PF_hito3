@@ -3,14 +3,14 @@
 
 - Despues de descargar el programa, clonar o forkear este repositorio debes saber que tienes que: 
 
-### SE DEBE EJECUTAR LOS CODIGOS DESDE LA CARPETA BACKEND EN LA TERMIANAL
+### SE DEBE EJECUTAR LOS CODIGOS DESDE LA CARPETA BACKEND EN LA TERMINAL
 
 ### Instalar dependencias con:
 npm install
 
-### Consigurar sus variables de entorno para que corra el programa, lo minimo necesario intalado sera así:
+### Configurar sus variables de entorno para que corra el programa, lo minimo necesario intalado sera así:
 
-### **.env backend**
+### **.env (archivo por crear en backend)**
 - DB_USER= ***
 - DB_HOST= ***
 - DB_NAME= ***
