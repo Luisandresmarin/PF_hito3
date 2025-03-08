@@ -3,6 +3,8 @@
 
 - Despues de descargar el programa, clonar o forkear este repositorio debes saber que tienes que: 
 
+### SE DEBE EJECUTAR LOS CODIGOS DESDE LA CARPETA BACKEND EN LA TERMIANAL
+
 ### Instalar dependencias con:
 npm install
 
