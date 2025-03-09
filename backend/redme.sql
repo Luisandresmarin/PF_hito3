@@ -22,7 +22,7 @@ CREATE TABLE productos (
   precio NUMERIC(10, 2) NOT NULL,
   categoria VARCHAR(50),
   stock INT NOT NULL,
-  imagen_url VARCHAR(255),
+  imagen_url TEXT,
   fecha_agregado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -54,3 +54,8 @@ CREATE TABLE transacciones (
   estado VARCHAR(20) CHECK (estado IN ('completada', 'fallida')) NOT NULL,
   CONSTRAINT fk_pedido_transaccion FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido) ON DELETE CASCADE
 );
+
+
+
+
+https://backend-seguridad-23eh.onrender.com

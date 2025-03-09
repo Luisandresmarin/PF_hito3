@@ -21,7 +21,9 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <h1 style={{ fontSize: '48px', color: 'black' }}>Productos de Seguridad</h1>
+      <h1 className="text-center" style={{ fontSize: '48px', color: 'black' }}>
+       Productos de Seguridad
+      </h1>
       <div className="container">
         <div className="row">
           {productos.map((producto) => (
