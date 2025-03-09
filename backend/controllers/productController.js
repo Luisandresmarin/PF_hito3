@@ -36,4 +36,31 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, createProduct, updateProduct, deleteProduct };
+const actualizarStock = async (req, res) => {
+  try {
+    // Verificar si se proporciona el stock en el cuerpo de la solicitud
+    const { stock } = req.body;
+    if (stock === undefined || stock < 0) {
+      return res.status(400).json({ error: 'El campo stock es obligatorio y no puede ser negativo.' });
+    }
+
+    // Actualizar el stock del producto basado en el id proporcionado en la URL
+    const updatedProduct = await Product.updateStock(req.params.id, stock);
+
+    // Verificar si se actualizó el producto
+    if (updatedProduct) {
+      return res.json({
+        mensaje: 'Stock actualizado exitosamente',
+        product: updatedProduct,
+      });
+    }
+
+    return res.status(404).json({ error: 'Producto no encontrado' });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Error al actualizar el stock del producto' });
+  }
+};
+
+module.exports = { getProducts, createProduct, updateProduct, deleteProduct, actualizarStock };

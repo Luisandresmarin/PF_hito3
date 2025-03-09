@@ -15,6 +15,17 @@ const Product = {
     return result.rows[0];
   },
 
+  async updateStock(id, stock) {
+    const result = await pool.query(
+      `UPDATE productos 
+       SET stock=$1 
+       WHERE id_producto=$2 
+       RETURNING id_producto, stock`,
+      [stock, id]
+    );
+    return result.rows[0]; 
+  },
+
   async update(id, { nombre, descripcion, precio, categoria, stock, imagen_url }) {
     const result = await pool.query(
       `UPDATE productos 

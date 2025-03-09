@@ -41,7 +41,7 @@ const Login = () => {
       <Container className="mt-5 d-flex justify-content-center">
         <Card style={{ width: '48rem', margin: '50px' }} className="shadow-lg">
           <Card.Body>
-          <Card.Title className="text-center" style={{ color: '#4C5425', fontSize: '2.5rem' }}>Login</Card.Title>
+          <Card.Title className="text-center" style={{ color: '#4C5425', fontSize: '2.5rem' }}>Bienvenido</Card.Title>
             {mensaje && <p className="text-center text-danger">{mensaje}</p>}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
@@ -77,7 +77,7 @@ const Login = () => {
               </div>
 
               <div className="d-flex justify-content-center mt-4">
-                <Button variant="custom" type="submit">Login</Button>
+                <Button variant="custom" type="submit">Ingresar</Button>
               </div>
             </Form>
           </Card.Body>

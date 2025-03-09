@@ -23,14 +23,12 @@ const Register = () => {
   });
 
   const [mensaje, setMensaje] = useState('');
-  const [passwordMatch, setPasswordMatch] = useState(true); // Estado para validar las contraseñas
+  const [passwordMatch, setPasswordMatch] = useState(true); 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-
-    // Validación instantánea de las contraseñas
     if (name === 'confirmPassword') {
       setPasswordMatch(formData.password === value);
     }

@@ -54,7 +54,7 @@ const Carrito = () => {
               <h3>Total: {totalPrice.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</h3>
               <div className="mt-4 d-flex justify-content-end">
                 <button className="btn btn-outline-danger me-2" onClick={clearCart}>Vaciar Carrito</button>
-                <button className="btn btn-success" onClick={handleCheckout}>Ir a Checkout</button>
+                <button className="btn btn-success" onClick={handleCheckout}>Ir a pagar</button>
               </div>
             </div>
           </div>

@@ -108,34 +108,24 @@ const obtenerPedidosUsuario = async (req, res) => {
 };
 
 const actualizarEstadoPedido = async (req, res) => {
-  const { id_pedido, estado_pago } = req.body;
+  const { id_pedido, nuevo_estado } = req.body;
+
+  if (!id_pedido || !nuevo_estado) {
+    return res.status(400).json({ error: 'Debe proporcionar un id_pedido y un nuevo_estado' });
+  }
 
   const client = await pool.connect();
   try {
-
+    // Verificar si el pedido existe
     const pedidoResult = await client.query('SELECT * FROM pedidos WHERE id_pedido = $1', [id_pedido]);
     if (pedidoResult.rows.length === 0) {
       return res.status(404).json({ error: 'Pedido no encontrado' });
     }
 
-    if (estado_pago === 'prueba') {
-      await client.query(
-        'UPDATE pedidos SET estado = $1 WHERE id_pedido = $2',
-        ['completado', id_pedido]
-      );
-      return res.json({ mensaje: 'Pago de prueba exitoso. Pedido completado' });
-    }
+    // Actualizar el estado del pedido sin restricciones
+    await client.query('UPDATE pedidos SET estado = $1 WHERE id_pedido = $2', [nuevo_estado, id_pedido]);
 
-    if (estado_pago !== 'completado') {
-      return res.status(400).json({ error: 'El pago no fue completado' });
-    }
-
-    await client.query(
-      'UPDATE pedidos SET estado = $1 WHERE id_pedido = $2',
-      ['completado', id_pedido]
-    );
-
-    res.json({ mensaje: 'Pago procesado correctamente, pedido completado' });
+    res.json({ mensaje: `Estado del pedido actualizado a "${nuevo_estado}" correctamente` });
 
   } catch (error) {
     console.error('Error al actualizar estado de pedido:', error);

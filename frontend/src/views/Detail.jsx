@@ -73,7 +73,7 @@ const Detail = () => {
             className="btn btn-custom mb-4"
             style={{ margin: '10px' }}
           >
-            Volver a Home
+            Página Principal
           </button>
         </div>
       </div>

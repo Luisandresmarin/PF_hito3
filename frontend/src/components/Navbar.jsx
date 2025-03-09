@@ -29,10 +29,10 @@ const CustomNavbar = () => {
             {!isAuthenticated ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link text-light hover:text-warning" to="/login">Login</Link>
+                  <Link className="nav-link text-light hover:text-warning" to="/login">Ingresar</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-light hover:text-warning" to="/register">Register</Link>
+                  <Link className="nav-link text-light hover:text-warning" to="/register">Registrarse</Link>
                 </li>
               </>
             ) : (
@@ -40,7 +40,7 @@ const CustomNavbar = () => {
                 {userRole === 'usuario' && (
                   <>
                     <li className="nav-item">
-                      <Link className="nav-link text-light hover:text-warning" to="/profile">Profile</Link>
+                      <Link className="nav-link text-light hover:text-warning" to="/profile">Perfil</Link>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link text-light hover:text-warning" to="/carrito">
@@ -60,7 +60,7 @@ const CustomNavbar = () => {
                     style={{ backgroundColor: '#E5B129', color: '#000' }}
                     onClick={logout}
                   >
-                    Logout
+                    Cerrar sesion
                   </button>
                 </li>
               </>

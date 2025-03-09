@@ -13,7 +13,7 @@ const Checkout = () => {
 
   useEffect(() => {
     if (cart.length === 0) {
-      navigate('/carrito');
+      navigate('/');
     }
   }, [cart, navigate]);
 
@@ -33,6 +33,8 @@ const Checkout = () => {
         return;
       }
   
+      const estadoTransaccion = metodoPago === 'otros' ? 'completada' : 'completada'; // Ajusta si necesitas manejar fallos
+  
       const pedido = {
         id_usuario: user.id,
         productos: cart.map((item) => ({
@@ -41,7 +43,8 @@ const Checkout = () => {
           precio: item.precio,
         })),
         total: totalPrice,
-        metodo_pago: metodoPago, 
+        metodo_pago: metodoPago,
+        estado_transaccion: estadoTransaccion, // Agregar estado de la transacción
       };
   
       try {
@@ -52,11 +55,7 @@ const Checkout = () => {
         });
   
         if (response.status === 200) {
-          if (metodoPago === 'prueba') {
-            alert('Pago de prueba exitoso. Pedido completado.');
-          } else {
-            alert('Pago exitoso. Pedido registrado.');
-          }
+          alert('Pago exitoso. Pedido registrado.');
           clearCart();
           navigate('/perfil');
         } else {
@@ -69,12 +68,13 @@ const Checkout = () => {
     }, 3000);
   };
   
+  
 
   return (
     <div style={{ backgroundColor: '#4C5425', height: '100vh' }} className="d-flex justify-content-center align-items-center">
       <Card style={{ width: '48rem', margin: '50px' }} className="shadow-lg">
         <Card.Body>
-          <Card.Title className="text-center" style={{ color: 'black', fontSize: '2.5rem' }}>Checkout</Card.Title>
+          <Card.Title className="text-center" style={{ color: 'black', fontSize: '2.5rem' }}>Resumen de la Compra</Card.Title>
           <ul className="list-group">
             {cart.map((item) => (
               <li key={item.id_producto} className="list-group-item d-flex justify-content-between">
@@ -95,14 +95,13 @@ const Checkout = () => {
               as="select" 
               value={metodoPago} 
               onChange={(e) => setMetodoPago(e.target.value)} 
-              style={{ color: 'black' }}
-            >
+              style={{ color: 'black' }}>
+
               <option value="">Selecciona un método de pago</option>
-              <option value="credito">Crédito</option>
-              <option value="debito">Débito</option>
-              <option value="efectivo">Efectivo</option>
-              <option value="transferencia">Transferencia</option>
-              <option value="prueba">Prueba</option>
+              <option value="tarjeta">tarjeta</option>
+              <option value="transferencia">transferencia</option>
+              <option value="otros">otros</option>
+
             </Form.Control>
           </Form.Group>
 

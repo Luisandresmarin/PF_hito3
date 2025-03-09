@@ -1,6 +1,5 @@
 marketplace_seguridad
 
-
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -55,7 +54,3 @@ CREATE TABLE transacciones (
   estado VARCHAR(20) CHECK (estado IN ('completada', 'fallida')) NOT NULL,
   CONSTRAINT fk_pedido_transaccion FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido) ON DELETE CASCADE
 );
-
-
-
-
